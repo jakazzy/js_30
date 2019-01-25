@@ -1,0 +1,39 @@
+html {
+    background: #790955;
+    /* fallback color */
+    background-image: url("drumkit.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+div.keys {
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+
+div.keys>div {
+    border: 2px solid orange;
+    margin: 20px;
+    padding: 10px;
+    width: 10%;
+    text-align: center;
+    transition: all 0.7s;
+    background: linear-gradient( to bottom, white, rgb(0, 204, 255));
+    font-size: 30px;
+    text-shadow: 2px;
+}
+
+.playing {
+    transform: scale(1.1);
+    border-color: brown;
+    box-shadow: 0 0 10px red;
+}
+
+div span {
+    display: block;
+    margin: 20px;
+    font-size: 15px;
+}
