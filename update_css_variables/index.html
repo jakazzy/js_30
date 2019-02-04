@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Update CSS VariablesS</title>
+</head>
+
+<body>
+    <h2>Update css variables with <span class="highlight">JS</span></h2>
+    <div class="controls">
+        <div class="control">
+            <label for="spacing">spacing</label>
+            <input type="range" name="spacing" max="200" min="0" value="10" data-sizing="px">
+
+            <label for="blur">blur</label>
+            <input type="range" name="blur" max="40" min="0" value="0" data-sizing="px">
+
+            <label for="base">base</label>
+            <input type="color" name="base">
+        </div>
+        <img src="matias-islas.jpg" alt="girl coding" width="600px" height="500px">
+    </div>
+
+    <style>
+         :root {
+            --base: #baaa77;
+            --spacing: 10px;
+            --blur: 10px;
+        }
+        
+        body {
+            color: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 20px;
+            text-align: center;
+            margin: 100px;
+            background: #bada55;
+        }
+        
+        .controls h2 {
+            color: black;
+        }
+        
+        .highlight {
+            color: var(--base);
+        }
+        
+        .controls {
+            margin-bottom: 20px;
+        }
+        
+        .control {
+            margin-bottom: 10px;
+        }
+        
+        label {
+            color: black;
+        }
+        
+        input {
+            size: 100px;
+        }
+        
+        img {
+            background: var(--base);
+            padding: var(--spacing);
+            filter: blur(var(--blur));
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+        const inputs = document.querySelectorAll("input");
+
+        function updateHandler() {
+            const suffix = this.dataset.sizing || "";
+            document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+        }
+
+        inputs.forEach(input => input.addEventListener("change", updateHandler));
+        inputs.forEach(input => input.addEventListener("mousemove", updateHandler));
+    </script>
+
+</body>
+
+</html>
