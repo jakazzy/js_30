@@ -40,12 +40,13 @@
         .hand {
             position: absolute;
             top: 50%;
-            width: 50%;
+            width: 40%;
             height: 6px;
+            left: 50%;
             border-radius: 5px;
             background-color: black;
-            transform-origin: 100%;
-            transform: rotate(90deg);
+            transform-origin: 0%;
+            transform: rotate(-90deg);
             transition: all 0.5s;
             transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
         }
@@ -53,6 +54,15 @@
         .sec-hand {
             background-color: blue;
             height: 2px;
+        }
+        
+        .hour-hand {
+            width: 30%;
+            height: 10px;
+        }
+        
+        h3 {
+            text-align: center;
         }
         
         .alarm-form {
@@ -130,6 +140,7 @@
     <div class="digital-clock">
 
     </div>
+    <h3>Set an alarm</h3>
     <audio src="sound/Siren_Noise-KevanGC-1337458893.wav" id="alarm"></audio>
     <div class="alarm-form center">
         <form>
@@ -153,15 +164,15 @@
         function setTime() {
             const current = new Date();
             const seconds = current.getSeconds();
-            const secondDegree = ((seconds / 60) * 360) + 90;
+            const secondDegree = ((seconds / 60) * 360) - 90;
             secondHand.style.transform = `rotate(${secondDegree}deg)`;
 
             const minutes = current.getMinutes();
-            const minuteDegree = ((minutes / 60) * 360) + 90;
+            const minuteDegree = ((minutes / 60) * 360) - 90 + secondDegree / 60;
             minuteHand.style.transform = `rotate(${minuteDegree}deg)`;
 
             const hours = current.getHours();
-            const hourDegree = ((hours / 12) * 360) + 90;
+            const hourDegree = ((hours / 12) * 360) - 90 + minuteDegree / 60;
             hourHand.style.transform = `rotate(${hourDegree}deg)`;
 
             submit.addEventListener("click", async function(e) {
@@ -174,7 +185,7 @@
                 }
             });
 
-            
+
 
         }
         setInterval(setTime, 1000);
