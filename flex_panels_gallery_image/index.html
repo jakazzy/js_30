@@ -7,44 +7,87 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Flex Panel</title>
     <style>
-        body {
-            width: 100vw;
-            height: 100vh;
-            border: 1px solid red;
-            overflow: hidden;
+        html {
+            box-sizing: border-box;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        
+        body,
+        .panel p {
+            margin: 0;
+        }
+        
+        .panel p {
+            text-transform: uppercase;
         }
         
         .panels {
+            color: #fff;
             display: flex;
+            min-height: 100vh;
         }
         
         .panel {
-            width: 200px;
-            height: 200px;
+            flex: 1;
+            background-size: cover;
+            background-position: center;
+            font-size: 20px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            transition: font-size 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11), flex 0.7s cubic-bezier(0.61, -0.19, 0.7, -0.11), background 0.2s
+        }
+        
+        .panel>* {
+            width: 100%;
+            flex: 1 0 auto;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
         }
         
         .panel1 {
-            background-image: url("images/alomo.jpg");
+            background-image: url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500);
         }
         
         .panel2 {
-            background-image: url("images/alomo.jpg")
+            background-image: url(https://source.unsplash.com/rFKUFzjPYiQ/1500x1500);
         }
         
         .panel3 {
-            background-image: url("images/alomo.jpg");
+            background-image: url(https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&w=1500&h=1500&fit=crop&s=967e8a713a4e395260793fc8c802901d);
         }
         
         .panel4 {
-            background-image: url("images/alomo.jpg");
+            background-image: url(https://source.unsplash.com/ITjiVXcwVng/1500x1500);
         }
         
         .panel5 {
-            background-image: url("images/alomo.jpg")
+            background-image: url(https://source.unsplash.com/3MNzGlQM7qs/1500x1500);
         }
         
-        .panel6 {
-            background-image: url("images/alomo.jpg")
+        .open {
+            flex: 5;
+            font: 40px;
+        }
+        
+        .panel>*:first-child {
+            transform: translateY(-100%);
+        }
+        
+        .panel.open-active>*:first-child {
+            transform: translateY(0);
+        }
+        
+        .panel>*:last-child {
+            transform: translateY(100%);
+        }
+        
+        .panel.open-active>*:last-child {
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -76,11 +119,22 @@
             <p>very</p>
             <p>true</p>
         </div>
-        <div class="panel panel6">
-            <p>your</p>
-            <p>possible</p>
-            <p>best</p>
-        </div>
+        <script>
+            const panels = document.querySelectorAll(".panel");
+
+            function toggleOpen() {
+                this.classList.toggle("open");
+            }
+
+            function toggleActive(e) {
+                if (e.propertyName.includes("flex")) {
+                    console.log(this);
+                    this.classList.toggle("open-active");
+                }
+            }
+            panels.forEach(panel => panel.addEventListener("click", toggleOpen));
+            panels.forEach(panel => panel.addEventListener("transitionend", toggleActive));
+        </script>
 
 </body>
 
