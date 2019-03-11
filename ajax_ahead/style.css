@@ -1,0 +1,45 @@
+html {
+    box-sizing: border-box;
+    font-weight: bold;
+    background-color: yellow;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+.searchform {
+    width: 400px;
+    margin: 50px auto;
+}
+
+input[type="text"] {
+    border: 10px solid #9b9cbb57;
+    border-radius: 5px;
+    width: 120%;
+    font-size: 30px;
+    padding: 6px;
+    text-align: center;
+}
+
+ul {
+    perspective: 100px;
+    margin: 0;
+}
+
+li {
+    padding: 5px;
+    list-style: none;
+    border: 1px solid #9b9cbb57;
+    border-bottom: 1px solid #D8D8D8;
+}
+
+li:nth-child(odd) {
+    transform: perspective(100px) rotateX(-3deg) translate(3px);
+}
+
+li:nth-child(even) {
+    transform: perspective(100px) rotateX(3deg) translate(-3px);
+}
